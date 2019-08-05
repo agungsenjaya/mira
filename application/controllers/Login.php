@@ -25,7 +25,7 @@ class Login extends CI_Controller {
 	function index()
 	{
 		$this->load->view('layouts/header');
-		$this->load->view('home');
+		$this->load->view('login_view');
 		$this->load->view('layouts/footer');
 	}
 	function login_act(){
