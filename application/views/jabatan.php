@@ -22,40 +22,33 @@
 			</div>
 		</div>
 		<hr class="border-primary">
-		<div class="text-center mb-3">
-			<h3 class="text-primary font-weight-bold">Simulasi Penggajian</h3>
-			<a href="javascript:void" title="" class="border-primary btn btn-white" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-adn"></i> Insert gajian</a>
+		<!-- table -->
+		<div class="mb-3 text-right">
+			<a href="javascript:void" class="btn btn-primary" title="" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus mr-2"></i>Tambah Jabatan</a>
 		</div>
 		<table class="table bg-white table-bordered" style="width:100%">
 			<thead class="bg-primary text-white">
 				<tr>
 					<th>#</th>
-					<th>Tanggal</th>
-					<th>User ID</th>
-					<th>Minus</th>
-					<th>Plus</th>
-					<th>Gaji</th>
-					<th>Total</th>
+					<th>Nama Jabatan</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php 
-				$opl = "SELECT * FROM tbl_log";
+				$opl = "SELECT * FROM tbl_jb";
 				$kl = $this->db->query($opl);
 				if ($kl->num_rows() > 0) {
 					foreach ($kl->result() as $kos) {?>
 				<tr>
-					<th><?php echo $kos->log_id ?></th>
-					<td class="bg-light text-capitalize"><?php echo $kos->log_reg ?></td>
-					<td><?php echo $kos->pg_id ?></td>
-					<td><?php echo $kos->log_min ?></td>
-					<td><?php echo $kos->log_plus ?></td>
-					<td><?php echo $kos->log_gaji ?></td>
-					<td><?php echo $kos->log_total ?></td>
+					<th><?php echo $kos->jb_id ?></th>
+					<td class="bg-light text-capitalize"><?php echo $kos->jb_name ?></td>
+					<td><a href="javascript:void" title="">Actions</a></td>
 				</tr>
 			<?php }} ?>
 			</tbody>
 		</table>
+		<!-- End table -->
 	</div>
 </div>
 <!-- Modal -->
@@ -69,41 +62,16 @@
         </button>
       </div>
       <div class="modal-body">
-    	<!-- Form -->
-    	<form action="<?php echo base_url(); ?>admin/tambah_penggajian" method="POST">
-    		<div class="form-group">
-			<label for=""><span class="text-primary">*</span> Nama Pegawai</label>
-			<select name="pg_id" class="form-control">
-				<option value="">Pilih Pegawai</option>
-				<?php 
-				$oml = "SELECT * FROM tbl_pg";
-				$kk = $this->db->query($oml);
-				foreach ($kk->result() as $kuy) {
-				?>
-				<option value="<?php echo $kuy->pg_id ?>"><?php echo $kuy->pg_nama . ' - ' . $kuy->pg_ktp . ' - ' . $kuy->pg_gaji ?></option>
-				<?php } ?>
-			</select>
-    		</div>
-    		<div class="form-row">
-    			<div class="form-group col-md">
-    				<label for="">Jumlah Alfa</label>
-    				<input type="text" name="" class="form-control" placeholder="Masukan alfa">
-    			</div>
-    			<div class="form-group col-md">
-    				<label for="">Jumlah Lembur</label>
-    				<input type="text" name="" class="form-control" placeholder="Masukan lembur">
-    			</div>
-    		</div>
-    		<hr>
-    		<ul class="small">
-    			<li>Jumlah minus/absen misal 12 hari di tulis 12 jika kosong tulis 0.</li>
-    			<li>Jumlah lembur misal 12 jam di tulis 12 jika kosong tulis 0.</li>
-    		</ul>
-    		
+        	<!-- Form -->
+        	<form action="<?php echo base_url(); ?>admin/tambah_jabatan" method="POST">
+        		<div class="form-group">
+        			<label for="">Nama Jabatan</label>
+        			<input type="text" name="jb_name" required class="form-control" placeholder="Masukan jabatan">
+        		</div>
+			  <button type="submit" class="btn btn-primary">Insert Jabatan</button>
+			</form>
+        	<!-- End Form -->
 
-    		<button type="submit" class="btn btn-primary">Insert Gajian</button>
-    	</form>
-    	<!-- End Form -->
       </div>
     </div>
   </div>

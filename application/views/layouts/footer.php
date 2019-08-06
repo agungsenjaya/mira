@@ -11,7 +11,21 @@
      	$(document).ready(function() {
      		$('#table').DataTable();
      		$('.js-custom-select').select2();
-		} );
+     		// Selected
+     		var ab = $('.una').val();
+		    if (ab == 'L') {
+		    	$('#mo').val('L');
+		    }else if(ab == 'P') {
+		    	$('#mo').val('P');
+		    }
+		    var ae = $('.uni').val();
+		    if (ae == ae) {
+		    	$('#mi').val(ae);
+		    }else {
+		    	$('#mi').val();
+		    }
+     		// End Selected
+		});
      </script>
 </body>
 </html>

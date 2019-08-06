@@ -84,7 +84,7 @@
         	 			<span class="badge badge-dark">Deactive</span>
         	 		<?php endif ?>
         	 	</td>
-        	 	<td><a href="<?php echo $kuy->pg_id ?>" title="">Actions</a></td>
+        	 	<td><a href="<?php echo base_url();?>admin/edit_pegawai/<?php echo $kuy->pg_id ?>" title="">Actions</a></td>
         	 </tr>
         	<?php }?>
         </tbody>

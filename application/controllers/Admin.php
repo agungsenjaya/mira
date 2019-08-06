@@ -46,8 +46,35 @@ class Admin extends CI_Controller {
 		$this->load->view('penggajian');
 		$this->load->view('layouts/footer');
 	}
-	public function find_pegawai(){
-		// 
+	public function edit_pegawai($id){
+		$where = array('pg_id' => $id);
+		$data['pegawai'] = $this->m_admin->edit_pegawai($where,'tbl_pg')->result();
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/sidebar');
+		$this->load->view('pegawai',$data);
+		$this->load->view('layouts/footer');
+	}
+	public function update_pegawai(){
+		$id = $this->input->post('pg_id');
+		$nama = $this->input->post('pg_nama');
+        $alamat = $this->input->post('pg_alamat');
+        $kelamin = $this->input->post('pg_kelamin');
+        $gaji = $this->input->post('pg_gaji');
+        $ktp = $this->input->post('pg_ktp');
+        $jabatan = $this->input->post('jb_id');
+		$data = array(
+	      'pg_nama' => $nama,
+          'pg_alamat' => $alamat,
+          'pg_kelamin' => $kelamin,
+          'pg_ktp' => $ktp,
+          'jb_id' => $jabatan,
+          'pg_gaji' => $gaji,
+	    );
+	    $where = array(
+	        'pg_id' => $id
+	      );
+	    $this->m_admin->update_pegawai($where,$data,'tbl_pg');
+	    redirect('admin');
 	}
 	public function tambah_pegawai(){
 	  $koda = $this->input->post('pg_ktp');
@@ -59,6 +86,7 @@ class Admin extends CI_Controller {
         $nama = $this->input->post('pg_nama');
         $alamat = $this->input->post('pg_alamat');
         $kelamin = $this->input->post('pg_kelamin');
+        $gaji = $this->input->post('pg_gaji');
         $reg = date('Y-m-d H:i:s');
         $ktp = $this->input->post('pg_ktp');
         $jabatan = $this->input->post('jb_id');
@@ -70,10 +98,40 @@ class Admin extends CI_Controller {
           'pg_ktp' => $ktp,
           'jb_id' => $jabatan,
           'pg_reg' => $reg,
+          'pg_gaji' => $gaji,
           'pg_status' => $status
           );
         $this->m_admin->tambah_pegawai($data,'tbl_pg');
         redirect('admin');
       }
+	}
+	// jabatan
+	public function jabatan(){
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/sidebar');
+		$this->load->view('jabatan');
+		$this->load->view('layouts/footer');
+	}
+	public function tambah_jabatan(){
+	  $koda = $this->input->post('jb_name');
+	  $sql = $this->db->query("SELECT * FROM tbl_jb WHERE jb_name='$koda'");
+      $count = $sql->num_rows();
+      if ($count > 0) {
+        echo "sudah ada";
+      }else{
+      	$nama = $this->input->post('jb_name');
+        $data = array(
+          'jb_name' => $nama,
+          );
+        $this->m_admin->tambah_jabatan($data,'tbl_jb');
+        redirect('admin/jabatan');
+      }
+	}
+	// ketentuan
+	public function ketentuan(){
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/sidebar');
+		$this->load->view('ketentuan');
+		$this->load->view('layouts/footer');
 	}
 }

@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="side-nav-menu-item">
-            <a class="side-nav-menu-link media align-items-center" href="#">
+            <a class="side-nav-menu-link media align-items-center" href="<?php echo base_url();?>admin/jabatan">
               <span class="side-nav-menu-icon d-flex mr-3">
                 <i class="fa fa-archive"></i>
               </span>
@@ -36,7 +36,7 @@
             </a>
           </li>
           <li class="side-nav-menu-item">
-            <a class="side-nav-menu-link media align-items-center" href="#">
+            <a class="side-nav-menu-link media align-items-center" href="<?php echo base_url(); ?>admin/ketentuan">
               <span class="side-nav-menu-icon d-flex mr-3">
                 <i class="fa fa-gears"></i>
               </span>
