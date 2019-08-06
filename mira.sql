@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 06 Agu 2019 pada 04.48
+-- Waktu pembuatan: 06 Agu 2019 pada 10.50
 -- Versi server: 5.7.19
 -- Versi PHP: 7.1.14
 
@@ -32,6 +32,14 @@ CREATE TABLE `tbl_jb` (
   `jb_id` int(100) NOT NULL,
   `jb_name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_jb`
+--
+
+INSERT INTO `tbl_jb` (`jb_id`, `jb_name`) VALUES
+(1, 'Staff Marketing'),
+(2, 'Staff Design');
 
 -- --------------------------------------------------------
 
@@ -71,23 +79,23 @@ CREATE TABLE `tbl_pg` (
   `pg_id` int(100) NOT NULL,
   `pg_nama` varchar(200) NOT NULL,
   `pg_ktp` varchar(100) NOT NULL,
-  `pg_jabatan` varchar(100) NOT NULL,
+  `jb_id` int(100) NOT NULL,
   `pg_kelamin` varchar(100) NOT NULL,
   `pg_status` varchar(100) NOT NULL,
   `pg_gaji` varchar(100) NOT NULL,
   `pg_reg` varchar(100) NOT NULL,
   `pg_upd` varchar(100) NOT NULL,
-  `pg_phk` varchar(100) NOT NULL
+  `pg_phk` varchar(100) NOT NULL,
+  `pg_alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_pg`
 --
 
-INSERT INTO `tbl_pg` (`pg_id`, `pg_nama`, `pg_ktp`, `pg_jabatan`, `pg_kelamin`, `pg_status`, `pg_gaji`, `pg_reg`, `pg_upd`, `pg_phk`) VALUES
-(1, 'didin senjaya', '320124522145', 'staff marketing', 'L', '1', '4000000', '-', '-', '-'),
-(2, 'nadi midala', '2221145454', 'staff design', 'P', '1', '5000000', '-', '-', '-'),
-(3, 'dadang kornelo', '5645465465', 'Staff IT', 'L', '1', '2500000', '-', '-', '-');
+INSERT INTO `tbl_pg` (`pg_id`, `pg_nama`, `pg_ktp`, `jb_id`, `pg_kelamin`, `pg_status`, `pg_gaji`, `pg_reg`, `pg_upd`, `pg_phk`, `pg_alamat`) VALUES
+(1, 'agung senjaya', '12345', 1, 'L', '1', '', '2019-08-06 10:21:55', '', '', 'jl raya pembangunan'),
+(2, 'dina abadi', '11223344', 1, 'P', '1', '', '2019-08-06 10:46:11', '', '', 'jl raya lintang');
 
 -- --------------------------------------------------------
 
@@ -152,7 +160,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT untuk tabel `tbl_jb`
 --
 ALTER TABLE `tbl_jb`
-  MODIFY `jb_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `jb_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_kt`
@@ -170,7 +178,7 @@ ALTER TABLE `tbl_log`
 -- AUTO_INCREMENT untuk tabel `tbl_pg`
 --
 ALTER TABLE `tbl_pg`
-  MODIFY `pg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_users`

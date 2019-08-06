@@ -23,6 +23,8 @@ class Admin extends CI_Controller {
 		if ($this->session->userdata('status') != "login") {
 			redirect(base_url("login"));
 		}
+			$this->load->model('m_admin');
+    		$this->load->database();
 	}
 	public function index()
 	{
@@ -44,7 +46,34 @@ class Admin extends CI_Controller {
 		$this->load->view('penggajian');
 		$this->load->view('layouts/footer');
 	}
-	public function pegawai_find(){
+	public function find_pegawai(){
 		// 
+	}
+	public function tambah_pegawai(){
+	  $koda = $this->input->post('pg_ktp');
+	  $sql = $this->db->query("SELECT * FROM tbl_pg WHERE pg_ktp='$koda'");
+      $count = $sql->num_rows();
+      if ($count > 0) {
+        echo "sudah ada";
+      }else{
+        $nama = $this->input->post('pg_nama');
+        $alamat = $this->input->post('pg_alamat');
+        $kelamin = $this->input->post('pg_kelamin');
+        $reg = date('Y-m-d H:i:s');
+        $ktp = $this->input->post('pg_ktp');
+        $jabatan = $this->input->post('jb_id');
+        $status = 1;
+        $data = array(
+          'pg_nama' => $nama,
+          'pg_alamat' => $alamat,
+          'pg_kelamin' => $kelamin,
+          'pg_ktp' => $ktp,
+          'jb_id' => $jabatan,
+          'pg_reg' => $reg,
+          'pg_status' => $status
+          );
+        $this->m_admin->tambah_pegawai($data,'tbl_pg');
+        redirect('admin');
+      }
 	}
 }

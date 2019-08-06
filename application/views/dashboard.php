@@ -21,19 +21,6 @@
 				<button type="button" class="btn btn-white btn-block"><?php echo date('Y-m-d'); ?></button>
 			</div>
 		</div>
-		<!-- <table id="table" class="table table-bordered bg-white small display">
-			<thead class="bg-primary text-white">
-				<tr>
-					<th>#</th>
-					<th>Nama Lengkap</th>
-					<th>Nik</th>
-					<th>Jenis Kelamin</th>
-					<th>Jabatan</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table> -->
 		<hr class="border-primary">
 		<div class="mb-3 d-flex justify-content-between">
 			<div>
@@ -41,7 +28,23 @@
 					<?php 
 						$sql = "SELECT * FROM tbl_pg";
 						$aml = $this->db->query($sql);
-						echo count($aml->result());
+            $nia = count($aml->result());
+            function ress($nia){
+              $data = strlen($nia);
+              switch ($data) {
+                case 1:
+                  echo '0'.$nia;
+                  break;
+                case $nia:
+                  echo $nia;
+                  break;
+                default:
+                  # code...
+                  break;
+              }
+            }
+            ress($nia);
+						// echo count($aml->result());
 					?>
 					</button>
 			</div>
@@ -72,7 +75,7 @@
         	 	<th><?php echo $kuy->pg_id; ?></th>
         	 	<td><?php echo $kuy->pg_nama; ?></td>
         	 	<th class="bg-light"><?php echo $kuy->pg_ktp; ?></th>
-        	 	<td><?php echo $kuy->pg_jabatan; ?></td>
+        	 	<td><?php echo $kuy->jb_id; ?></td>
         	 	<td><?php echo $kuy->pg_kelamin; ?></td>
         	 	<td>
         	 		<?php if ($kuy->pg_status == 1): ?>
@@ -101,43 +104,48 @@
       </div>
       <div class="modal-body">
         	<!-- Form -->
-        	<form>
+        	<form action="<?php echo base_url(); ?>admin/tambah_pegawai" method="POST">
   <div class="form-row">
     <div class="form-group col-md-6">
      <label for="">Nama lengkap</label>
-     <input type="text" class="form-control" name="" placeholder="Masukan nama">
+     <input type="text" class="form-control" name="pg_nama" placeholder="Masukan nama" required>
     </div>
     <div class="form-group col-md-6">
      <label for="">Nomor Induk</label>
-     <input type="text" class="form-control" name="" placeholder="Masukan nomor">
+     <input type="text" class="form-control" name="pg_ktp" placeholder="Masukan nomor" required>
     </div>
   </div>
   <div class="form-group">
     <label for="">Jenis Kelamin</label>
-    <select name="" class="form-control">
+    <select name="pg_kelamin" class="form-control" required>
       <option value="">Pilih Kelamin</option>
-      <option value="P">Perempuan</option>}
-      <option value="L">Laki-Laki</option>}
+      <option value="P">Perempuan</option>
+      <option value="L">Laki-Laki</option>
     </select>
   </div>
     <div class="form-row">
       <div class="form-group col-md-4">
        <label for="">Jabatan</label>
-       <select class="form-control">
-         <option value="">Pilih Jabatan</option>}
-         <option value="2">Operator Produksi</option>}
-         <option value="1">Staff Coordinator</option>}
+       <select class="form-control" required name="jb_id">
+         <option value="">Pilih Jabatan</option>
+         <?php 
+         $kj = "SELECT * FROM tbl_jb";
+         $qq = $this->db->query($kj)->result();
+         foreach ($qq as $kiwi ) {
+          ?>
+         <option value="<?php echo $kiwi->jb_id ?>"><?php echo $kiwi->jb_name ?></option>
+       <?php } ?>
        </select>
       </div>
       <div class="form-group col-md-8">
        <label for="">Gaji</label>
-       <input type="text" class="form-control" name="" placeholder="Masukan gaji">
+       <input type="text" class="form-control" name="pg_gaji" placeholder="Masukan gaji" required>
       </div>
     </div>
   
   <div class="form-group">
     <label for="inputAlamat">Alamat Lengkap</label>
-    <textarea name="" class="form-control" placeholder="Masukan alamat"></textarea>
+    <textarea name="pg_alamat" class="form-control" placeholder="Masukan alamat" required></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Insert Pegawai</button>
 </form>
