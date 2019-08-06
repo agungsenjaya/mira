@@ -16156,7 +16156,7 @@ body.side-nav-mini-mode.side-nav-closed .side-nav-header-logo-text {
 .side-nav-menu-link:hover, .side-nav-menu-link.active,
 .side-nav-menu-item.active > .side-nav-menu-link {
   text-decoration: none;
-  color: #0308b5;
+  color: #fff;
 }
 
 .side-nav-menu-third-level .side-nav-menu-link:hover::before,
@@ -16165,7 +16165,7 @@ body.side-nav-mini-mode.side-nav-closed .side-nav-header-logo-text {
 .side-nav-menu-item.active > .side-nav-menu-link::before,
 .side-nav-menu-third-level
 .side-nav-menu-item.active > .side-nav-menu-link::before {
-  border-color: #0308b5;
+  border-color: #fff;
 }
 
 .side-nav-menu-top-level > .side-nav-opened > .side-nav-menu-link,

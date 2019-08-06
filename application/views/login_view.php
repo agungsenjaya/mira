@@ -4,8 +4,8 @@
 			<!-- <img class="mr-2" src="//via.placeholder.com/70" alt=""> -->
 			<i class="fa fa-twitch mr-2 fa-4x text-primary"></i>
 			<div class="media-body ">
-				<h4 class="font-weight-bold mb-0 text-primary">SHELL COORPORATION <sup>&copy;</sup></h4>
-				<p class="mb-0">Selamat datang dihalaman login shell coorporation <br> bangun karirmu disini mari berinovasi</p>
+				<h4 class="font-weight-bold mb-0 text-primary">MIRA GROUP <sup>&copy;</sup></h4>
+				<p class="mb-0">Selamat datang dihalaman login mira group <br> bangun karirmu disini mari berinovasi</p>
 			</div>
 		</div>
 		<hr>
