@@ -4,9 +4,10 @@
 			<div class="align-self-center col-md-3">
 				<p class="text-capitalize mb-0 text-primary"><i class="fa fa-unlink mr-2"></i>Selamat Datang, <b><?php echo $this->session->userdata("nama") ?></b></p>
 			</div>
-			<div class="col-md">
-				<form id="headerSearchForm" class="header-search input-group w-100 border border-primary" action="#">
-                <input id="headerSearchField" class="header-search-input form-control form-control-icon-text" type="text" placeholder="Yuk cari karyawan..">
+			<div class="col-md p-0 z-4">
+        
+				<form id="headerSearchForm">
+                <input id="search1" class="header-search-input form-control form-control-icon-text" type="text" placeholder="Yuk cari karyawan..">
                 <div class="input-group-append focus-hide">
                   <i class="fa fa-search icon-text icon-text-lg"></i>
                 </div>
@@ -16,7 +17,9 @@
                   </span>
                 </div>
               </form>
-			</div>
+              <ul id="result" class="p-0 position-absolute w-100">
+              </ul>
+      </div>
 			<div class="col-md-3">
 				<button type="button" class="btn btn-white btn-block"><?php echo date('Y-m-d'); ?></button>
 			</div>
@@ -41,14 +44,17 @@
 				if ($kl->num_rows() > 0) {
 					foreach ($kl->result() as $kos) {?>
 				<tr>
-					<th><?php echo $kos->jb_id ?></th>
-					<td class="bg-light text-capitalize"><?php echo $kos->jb_name ?></td>
+					<th class="bg-light"><?php echo $kos->jb_id ?></th>
+					<td class="text-capitalize"><?php echo $kos->jb_name ?></td>
 					<td><a href="javascript:void" title="">Actions</a></td>
 				</tr>
 			<?php }} ?>
 			</tbody>
 		</table>
 		<!-- End table -->
+	</div>
+	<div id="overlay">
+		
 	</div>
 </div>
 <!-- Modal -->

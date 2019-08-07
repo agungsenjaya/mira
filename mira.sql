@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 06, 2019 at 04:48 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: localhost:3306
+-- Waktu pembuatan: 07 Agu 2019 pada 10.33
+-- Versi server: 5.7.19
+-- Versi PHP: 7.1.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_jb`
+-- Struktur dari tabel `tbl_jb`
 --
 
 CREATE TABLE `tbl_jb` (
@@ -32,7 +34,7 @@ CREATE TABLE `tbl_jb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_jb`
+-- Dumping data untuk tabel `tbl_jb`
 --
 
 INSERT INTO `tbl_jb` (`jb_id`, `jb_name`) VALUES
@@ -43,7 +45,7 @@ INSERT INTO `tbl_jb` (`jb_id`, `jb_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kt`
+-- Struktur dari tabel `tbl_kt`
 --
 
 CREATE TABLE `tbl_kt` (
@@ -54,7 +56,7 @@ CREATE TABLE `tbl_kt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_kt`
+-- Dumping data untuk tabel `tbl_kt`
 --
 
 INSERT INTO `tbl_kt` (`kt_id`, `kt_nama`, `kt_price`, `kt_reg`) VALUES
@@ -64,7 +66,7 @@ INSERT INTO `tbl_kt` (`kt_id`, `kt_nama`, `kt_price`, `kt_reg`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_log`
+-- Struktur dari tabel `tbl_log`
 --
 
 CREATE TABLE `tbl_log` (
@@ -80,7 +82,7 @@ CREATE TABLE `tbl_log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pg`
+-- Struktur dari tabel `tbl_pg`
 --
 
 CREATE TABLE `tbl_pg` (
@@ -98,17 +100,19 @@ CREATE TABLE `tbl_pg` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_pg`
+-- Dumping data untuk tabel `tbl_pg`
 --
 
 INSERT INTO `tbl_pg` (`pg_id`, `pg_nama`, `pg_ktp`, `jb_id`, `pg_kelamin`, `pg_status`, `pg_gaji`, `pg_reg`, `pg_upd`, `pg_phk`, `pg_alamat`) VALUES
 (2, 'dina abadid', '11223344', 1, 'P', '1', '4000000', '2019-08-06 10:46:11', '', '', 'jl raya lintang'),
-(4, 'yayan kardus', '554455', 2, 'L', '1', '1000000', '2019-08-06 15:17:44', '', '', 'holis bandung raya patimura');
+(4, 'yayan kardus', '554455', 2, 'L', '1', '1000000', '2019-08-06 15:17:44', '', '', 'holis bandung raya patimura'),
+(5, 'ahmad sanusi', '445577', 2, 'L', '1', '50000', '2019-08-07 14:16:03', '', '', 'jl raya singgan\r\n'),
+(6, 'rona merana', '44555', 2, 'P', '1', '8000000', '2019-08-07 15:24:20', '', '', 'jl raya bandung');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_users`
+-- Struktur dari tabel `tbl_users`
 --
 
 CREATE TABLE `tbl_users` (
@@ -119,7 +123,7 @@ CREATE TABLE `tbl_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_users`
+-- Dumping data untuk tabel `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`user_id`, `user_name`, `user_password`, `user_create`) VALUES
@@ -131,64 +135,70 @@ INSERT INTO `tbl_users` (`user_id`, `user_name`, `user_password`, `user_create`)
 --
 
 --
--- Indexes for table `tbl_jb`
+-- Indeks untuk tabel `tbl_jb`
 --
 ALTER TABLE `tbl_jb`
   ADD PRIMARY KEY (`jb_id`);
 
 --
--- Indexes for table `tbl_kt`
+-- Indeks untuk tabel `tbl_kt`
 --
 ALTER TABLE `tbl_kt`
   ADD PRIMARY KEY (`kt_id`);
 
 --
--- Indexes for table `tbl_log`
+-- Indeks untuk tabel `tbl_log`
 --
 ALTER TABLE `tbl_log`
   ADD PRIMARY KEY (`log_id`);
 
 --
--- Indexes for table `tbl_pg`
+-- Indeks untuk tabel `tbl_pg`
 --
 ALTER TABLE `tbl_pg`
   ADD PRIMARY KEY (`pg_id`);
 
 --
--- Indexes for table `tbl_users`
+-- Indeks untuk tabel `tbl_users`
 --
 ALTER TABLE `tbl_users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbl_jb`
+-- AUTO_INCREMENT untuk tabel `tbl_jb`
 --
 ALTER TABLE `tbl_jb`
   MODIFY `jb_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `tbl_kt`
+-- AUTO_INCREMENT untuk tabel `tbl_kt`
 --
 ALTER TABLE `tbl_kt`
   MODIFY `kt_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `tbl_log`
+-- AUTO_INCREMENT untuk tabel `tbl_log`
 --
 ALTER TABLE `tbl_log`
   MODIFY `log_id` int(100) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `tbl_pg`
+-- AUTO_INCREMENT untuk tabel `tbl_pg`
 --
 ALTER TABLE `tbl_pg`
-  MODIFY `pg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT for table `tbl_users`
+-- AUTO_INCREMENT untuk tabel `tbl_users`
 --
 ALTER TABLE `tbl_users`
   MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

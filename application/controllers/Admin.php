@@ -40,11 +40,41 @@ class Admin extends CI_Controller {
 		$this->datatables->where('pg_status',1);
 		return print_r($this->	datatables->generate());
 	}
+	 function pro(){
+	        $data = $this->db->get("tbl_pg")->result();
+	        echo json_encode( $data);
+	  }
 	public function penggajian(){
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar');
 		$this->load->view('penggajian');
 		$this->load->view('layouts/footer');
+	}
+	public function tmbah_penggajian(){
+	  $koda = $this->input->post('pg_id');
+	  $dats = date('Y-m-d');
+	  $sql = $this->db->query("SELECT * FROM tbl_log WHERE pg_id='$koda' AND log_reg LIKE '$dats%'");
+      $count = $sql->num_rows();
+      if ($count > 0) {
+        echo "Tanggal yang sama sudah di gajih..";
+      }else{
+        $id = $this->input->post('pg_id');
+        $gaji = $this->input->post('log_gaji');
+        $total = $this->input->post('log_total');
+        $min = $this->input->post('log_min');
+        $plus = $this->input->post('log_plus');
+        $reg = date('Y-m-d H:i:s');
+        $data = array(
+          'pg_id' => $id,
+          'log_reg' => $reg,
+          'log_gaji' => $gaji,
+          'log_min' => $min,
+          'log_plus' => $plus,
+          'log_total' => $total,
+          );
+        $this->m_admin->tambah_jabatan($data,'tbl_log');
+        redirect('admin');
+	}
 	}
 	public function edit_pegawai($id){
 		$where = array('pg_id' => $id);

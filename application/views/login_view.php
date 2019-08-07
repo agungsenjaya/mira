@@ -4,8 +4,8 @@
 			<!-- <img class="mr-2" src="//via.placeholder.com/70" alt=""> -->
 			<i class="fa fa-twitch mr-2 fa-4x text-primary"></i>
 			<div class="media-body ">
-				<h4 class="font-weight-bold mb-0 text-primary">MIRA GROUP <sup>&copy;</sup></h4>
-				<p class="mb-0">Selamat datang dihalaman login mira group <br> bangun karirmu disini mari berinovasi</p>
+				<h4 class="font-weight-bold mb-0 text-primary text-uppercase">pt. anugrah mitra mulia</h4>
+				<p class="mb-0">Selamat datang dihalaman login mira group.</p>
 			</div>
 		</div>
 		<hr>
@@ -19,8 +19,9 @@
 	    <label for="inputPassword">Password</label>
 	    <input type="password" class="form-control" id="inputPassword" placeholder="Masukeun Password" name="user_password" required>
 	  </div>
-	  
-	  <button type="submit" class="btn btn-primary text-uppercase">Login Now</button>
+	  <div class="text-center">
+		  <button type="submit" class="btn btn-primary text-uppercase">Login Now</button>
+	  </div>
 	</form>
 
 		<div class="mt-5 text-center">

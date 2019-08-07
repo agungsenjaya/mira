@@ -2,7 +2,7 @@
 	<div class="px-3 pt-5 text-center">
     <i class="fa fa-twitch mr-2 fa-4x text-white mb-2"></i>
     <h5 class="font-weight-bold mb-0 text-white">MIRA GROUP <sup>&copy;</sup></h5>
-    <p class="small mb-0 text-white">Software Solution</p>
+    <p class="small mb-0 text-white text-capitalize">pT. anugrah mitra mulia</p>
   </div>
   <hr>
   <ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
