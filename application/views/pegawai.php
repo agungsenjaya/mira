@@ -56,7 +56,15 @@
 					<tr>
 						<td>Jabatan</td>
 						<td>:</td>
-						<th><?php echo $ra->jb_id;?></th>
+						<th class="text-capitalize">
+							<?php 
+			                  $ml = "SELECT * FROM tbl_jb WHERE jb_id=".$ra->jb_id;
+			                  $mu = $this->db->query($ml);
+			                  foreach ($mu->result() as $nos) {
+			                    echo $nos->jb_name;
+			                  }
+			              ?>
+						</th>
 					</tr>
 					<tr>
 						<td>Status</td>
@@ -68,6 +76,11 @@
 		        	 			<span class="badge badge-dark">Deactive</span>
 		        	 		<?php endif ?>
 						</th>
+					</tr>
+					<tr>
+						<td>Gajih</td>
+						<td>:</td>
+						<th>Rp <?php echo $ra->pg_gaji ?></th>
 					</tr>
 					<tr>
 						<td>Alamat</td>
@@ -123,7 +136,7 @@
 					      </div>
 					      <div class="form-group col-md-8">
 					       <label for="">Gaji</label>
-					       <input type="text" class="form-control" name="pg_gaji" placeholder="Masukan gaji" required value="<?php echo $ke->pg_gaji ?>">
+					       <input type="text" class="form-control uang" name="pg_gaji" placeholder="Masukan gaji" required value="<?php echo $ke->pg_gaji ?>">
 					      </div>
 					    </div>
 					  
@@ -153,8 +166,8 @@
 			<thead class="bg-primary text-white">
 				<tr>
 					<th>Tanggal</th>
-					<th>Minus</th>
-					<th>Plus</th>
+					<th>Absen</th>
+					<th>Lembur</th>
 					<th>Gaji</th>
 					<th>Total Gaji</th>
 				</tr>
@@ -166,11 +179,27 @@
 					if ($hh->num_rows() > 0) {
 						foreach ($hh->result() as $kas) {?>
 				<tr>
-					<th></th>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<th><?php echo $kas->log_reg ?></th>
+					<td>
+						<?php 
+							if ($kas->log_absen > 0) {
+							echo $kas->log_absen . ' Hari';
+							}else{
+								echo '-';
+							}
+						?>
+					</td>
+					<td>
+						<?php 
+						if ($kas->log_lembur > 0) {
+							echo $kas->log_lembur . ' Jam';
+							}else{
+								echo '-';
+							}
+						?>
+					</td>
+					<td>Rp <?php echo $kas->log_gaji; ?></td>
+					<th>Rp <?php echo $kas->log_total; ?></th>
 				</tr>
 			<?php }} ?>
 			</tbody>

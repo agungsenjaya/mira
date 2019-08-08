@@ -48,7 +48,7 @@
           <li class="sidebar-heading h6 font-weight-bold text-white">Menu Lainnya</li>
           <!-- End Menu Lainnya -->
           <li class="side-nav-menu-item">
-            <a class="side-nav-menu-link media align-items-center" href="#">
+            <a class="side-nav-menu-link media align-items-center" href="javascript:void(0)">
               <span class="side-nav-menu-icon d-flex mr-3">
                 <i class="fa fa-file-pdf-o"></i>
               </span>

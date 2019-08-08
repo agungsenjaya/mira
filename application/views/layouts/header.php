@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Dashboard Penggajian</title>
+	<link rel="icon" href="<?php echo base_url(''); ?>assets/favicon.png">
 	<link rel="stylesheet" href="">
 	<link rel="stylesheet" href="<?php echo base_url(''); ?>assets/css/theme.css">
 	<link rel="stylesheet" href="<?php echo base_url(''); ?>assets/css/style.css">

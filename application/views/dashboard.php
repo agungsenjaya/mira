@@ -70,6 +70,7 @@
         </thead>
         <tbody class="text-capitalize">
         	<?php 
+          // Jabtan
         	$sql = "SELECT * FROM tbl_pg";
         	$qq = $this->db->query($sql);
         		foreach ($qq->result() as $kuy) {
@@ -78,8 +79,17 @@
         	 	<th><?php echo $kuy->pg_id; ?></th>
         	 	<td><?php echo $kuy->pg_nama; ?></td>
         	 	<th class="bg-light"><?php echo $kuy->pg_ktp; ?></th>
-        	 	<td><?php echo $kuy->jb_id; ?></td>
-        	 	<td><?php echo $kuy->pg_kelamin; ?></td>
+        	 	<!-- <td><?php echo $kuy->jb_id; ?></td> -->
+            <td>
+              <?php 
+                  $ml = "SELECT * FROM tbl_jb WHERE jb_id=".$kuy->jb_id;
+                  $mu = $this->db->query($ml);
+                  foreach ($mu->result() as $nos) {
+                    echo $nos->jb_name;
+                  }
+              ?>
+            </td>
+            <td><?php echo $kuy->pg_kelamin; ?></td>
         	 	<td>
         	 		<?php if ($kuy->pg_status == 1): ?>
         	 			<span class="badge badge-primary">Active</span>
@@ -101,7 +111,6 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content ">
       <div class="modal-header">
-        <!-- <small class="text-muted">Nomor induk hanya berlaku untuk satu pegawai</small> -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -143,7 +152,7 @@
       </div>
       <div class="form-group col-md-8">
        <label for="">Gaji</label>
-       <input type="text" class="form-control" name="pg_gaji" placeholder="Masukan gaji" required>
+       <input type="text" class="form-control uang" name="pg_gaji" placeholder="Masukan gaji" required>
       </div>
     </div>
   

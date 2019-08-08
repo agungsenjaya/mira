@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 07 Agu 2019 pada 10.33
+-- Waktu pembuatan: 08 Agu 2019 pada 07.33
 -- Versi server: 5.7.19
 -- Versi PHP: 7.1.14
 
@@ -30,17 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_jb` (
   `jb_id` int(100) NOT NULL,
-  `jb_name` varchar(200) NOT NULL
+  `jb_name` varchar(200) NOT NULL,
+  `jb_reg` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `tbl_jb`
---
-
-INSERT INTO `tbl_jb` (`jb_id`, `jb_name`) VALUES
-(1, 'Staff Marketing'),
-(2, 'Staff Design'),
-(3, 'operator produksi');
 
 -- --------------------------------------------------------
 
@@ -60,8 +52,8 @@ CREATE TABLE `tbl_kt` (
 --
 
 INSERT INTO `tbl_kt` (`kt_id`, `kt_nama`, `kt_price`, `kt_reg`) VALUES
-(1, 'minus', '50000', '-'),
-(2, 'plus', '25000', '-');
+(1, 'Absen', '50.000', '2019-08-08 10:35:21'),
+(2, 'Lembur', '20.000', '2019-08-08 10:37:08');
 
 -- --------------------------------------------------------
 
@@ -73,8 +65,8 @@ CREATE TABLE `tbl_log` (
   `log_id` int(100) NOT NULL,
   `log_reg` varchar(200) NOT NULL,
   `log_gaji` varchar(200) NOT NULL,
-  `log_min` varchar(200) NOT NULL,
-  `log_plus` varchar(200) NOT NULL,
+  `log_absen` varchar(200) NOT NULL,
+  `log_lembur` varchar(200) NOT NULL,
   `log_total` varchar(200) NOT NULL,
   `pg_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -98,16 +90,6 @@ CREATE TABLE `tbl_pg` (
   `pg_phk` varchar(100) NOT NULL,
   `pg_alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `tbl_pg`
---
-
-INSERT INTO `tbl_pg` (`pg_id`, `pg_nama`, `pg_ktp`, `jb_id`, `pg_kelamin`, `pg_status`, `pg_gaji`, `pg_reg`, `pg_upd`, `pg_phk`, `pg_alamat`) VALUES
-(2, 'dina abadid', '11223344', 1, 'P', '1', '4000000', '2019-08-06 10:46:11', '', '', 'jl raya lintang'),
-(4, 'yayan kardus', '554455', 2, 'L', '1', '1000000', '2019-08-06 15:17:44', '', '', 'holis bandung raya patimura'),
-(5, 'ahmad sanusi', '445577', 2, 'L', '1', '50000', '2019-08-07 14:16:03', '', '', 'jl raya singgan\r\n'),
-(6, 'rona merana', '44555', 2, 'P', '1', '8000000', '2019-08-07 15:24:20', '', '', 'jl raya bandung');
 
 -- --------------------------------------------------------
 
@@ -172,7 +154,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT untuk tabel `tbl_jb`
 --
 ALTER TABLE `tbl_jb`
-  MODIFY `jb_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `jb_id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_kt`
@@ -190,7 +172,7 @@ ALTER TABLE `tbl_log`
 -- AUTO_INCREMENT untuk tabel `tbl_pg`
 --
 ALTER TABLE `tbl_pg`
-  MODIFY `pg_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pg_id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_users`

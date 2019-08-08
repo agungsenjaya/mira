@@ -29,12 +29,49 @@
 			<h3 class="text-primary font-weight-bold">Simulasi Penggajian</h3>
 			<a href="javascript:void" title="" class="border-primary btn btn-white" data-toggle="modal" data-target="#dot"><i class="fa  fa-credit-card"></i> Insert gajian</a>
 		</div>
+		<?php 
+		// function rupiah($angka){
+		// 	$hasil_rupiah = number_format($angka,0,'.','.');
+		// 	return $hasil_rupiah;
+		// }
+		// $pp = '5.000';
+		// $jj = str_replace(".", "", $pp) - 200;
+		// echo rupiah($jj);
+
+		 ?>
+		 <div class="mb-3">
+		 	<div class="col-md-8 offset-md-2">
+		 	<div class="row">
+		 		<?php 
+		 			$opt = "SELECT * FROM tbl_kt";
+		 			$tt = $this->db->query($opt);
+		 			if ($tt->num_rows() > 0) {
+		 				foreach ($tt->result() as $bos) {
+		 		?>
+		 		<div class="col-md">
+		 			<div class="media p-4 bg-white border-primary border">
+		 				<i class="fa fa-gears fa-3x text-primary mr-3"></i>
+		 				<div class="media-body">
+		 					<h5 class="font-weight-bold mb-0 text-primary">Ketentuan <?php echo $bos->kt_nama ?></h5>
+		 					<h3 class="font-weight-bold">
+		 						<?php if ($bos->kt_id == 1): ?>
+		 							<?php echo "-"; ?>
+		 						<?php endif ?>
+		 						Rp <?php echo $bos->kt_price ?></h3>
+		 				</div>
+		 			</div>
+		 		</div>
+		 	<?php }} ?>
+
+		 	</div>
+		 	</div>
+		 </div>
 		<table class="table bg-white table-bordered" style="width:100%">
 			<thead class="bg-primary text-white">
 				<tr>
 					<th>#</th>
 					<th>Tanggal</th>
-					<th>User ID</th>
+					<th>Nama Pegawai</th>
 					<th>Absen</th>
 					<th>Lemburan</th>
 					<th>Gaji Peg</th>
@@ -49,12 +86,33 @@
 					foreach ($kl->result() as $kos) {?>
 				<tr>
 					<th><?php echo $kos->log_id ?></th>
-					<td class="bg-light text-capitalize"><?php echo $kos->log_reg ?></td>
-					<td><?php echo $kos->pg_id ?></td>
-					<td><?php echo $kos->log_min ?></td>
-					<td><?php echo $kos->log_plus ?></td>
-					<td><?php echo $kos->log_gaji ?></td>
-					<td><?php echo $kos->log_total ?></td>
+					<th class="text-capitalize"><?php echo $kos->log_reg ?></th>
+					<th class="text-capitalize"><?php 
+					$ek = "SELECT * FROM tbl_pg WHERE pg_id=".$kos->pg_id;
+					$ss = $this->db->query($ek);
+					foreach ($ss->result() as $vak) {
+						echo $vak->pg_nama;
+					}
+					// echo $kos->pg_id 
+					?></th>
+					<td><?php 
+						if ($kos->log_absen > 0) {
+						echo $kos->log_absen.' Hari';
+						}else{
+							echo '-';
+						}
+					?></td>
+					<th>
+						<?php 
+						if ($kos->log_lembur > 0) {
+						echo $kos->log_lembur . ' Jam';
+						}else{
+							echo '-';
+						}
+					?>
+					</th>
+					<td>Rp <?php echo $kos->log_gaji ?></td>
+					<th>Rp <?php echo $kos->log_total ?></th>
 				</tr>
 			<?php }} ?>
 			</tbody>
@@ -80,7 +138,7 @@
     	<form action="<?php echo base_url(); ?>admin/tambah_penggajian" method="POST">
     		<div class="form-group">
 			<label for=""><span class="text-primary">*</span> Masukan Nik Pegawai</label>
-			<select id="drod" name="pg_id" class="form-control" required>
+			<select id="drod" class="form-control" required>
 				<option value="">Masukan Nik</option>
 				<?php 
 				$oml = "SELECT * FROM tbl_pg";
@@ -94,21 +152,22 @@
     		<div class="form-group">
     			<label for="">Nama Pegawai</label>
     			<input type="hidden" name="pg_id" id="wo">
-    			<input type="text"  id="wa" disabled name="" class="form-control text-capitalize font-weight-bold" required>
+    			<input id="wa" disabled class="form-control text-capitalize font-weight-bold" required>
     		</div>
     		<div class="form-group">
     			<label for="">Gaji Pegawai</label>
-    			<input type="text" id="wu" disabled name="" class="form-control uang">
+    			<input type="hidden" name="log_gaji" id="wi">
+    			<input id="wu" disabled class="form-control uang">
     		</div>
     		<div class="form-row">
     			<div class="form-group col-md">
     				<label for="">Jumlah Alfa</label>
-    				<input id="numbers1" name="" class="form-control border-primary" placeholder="Masukan alfa" required>
+    				<input id="numbers1" name="log_absen" class="form-control border-primary" placeholder="Masukan alfa" required>
     				<small class="font-shal"><span class="text-primary">*</span> Tulis total akumulasi hari misal 12</small>
     			</div>
     			<div class="form-group col-md">
     				<label for="">Jumlah Lembur</label>
-    				<input id="numbers2" name="" class="form-control border-primary" placeholder="Masukan lembur" required>
+    				<input id="numbers2" name="log_lembur" class="form-control border-primary" placeholder="Masukan lembur" required>
     				<small class="font-shal"><span class="text-primary">*</span> Tulis total akumulasi jam misal 25</small>
     			</div>
     		</div>

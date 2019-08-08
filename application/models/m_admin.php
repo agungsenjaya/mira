@@ -15,4 +15,16 @@ class M_admin extends CI_Model
 	function tambah_jabatan($data,$table){
 		$this->db->insert($table,$data);
 	}
+	function update_jabatan($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+	// Ketentuan
+	function tambah_ketentuan($data,$table){
+		$this->db->insert($table,$data);
+	}
+	function update_ketentuan($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
 }

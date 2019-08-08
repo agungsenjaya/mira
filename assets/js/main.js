@@ -60,17 +60,18 @@ $(document).ready(function() {
                   console.log(pa);
                   $.each(pa, function(key, val) {
                     $('#wa').val(val.pg_nama);
-                    $('#wu').val(val.pg_gaji);
+                    $('#wu, #wi').val(val.pg_gaji);
                     $('#wo').val(val.pg_id);
                   });
                 });
               // End Insert Penggajian
               if ($(this).val() == 0) {
                 $('#buha').attr('disabled','true');
-                $('#wa, #wu, #wo').val('');
+                $('#wa, #wu, #wi, #wo').val('');
               }else{
                 $('#buha').removeAttr('disabled');
               }
               });
-                  // $( '#wu' ).mask('000.000.000', {reverse: true});
+                  $( '#wu, .uang' ).mask('000.000.000', {reverse: true});
+                  $( '#wi, .uang' ).mask('000.000.000', {reverse: true});
 });

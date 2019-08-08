@@ -34,6 +34,7 @@
 				<tr>
 					<th>#</th>
 					<th>Nama Jabatan</th>
+					<th>Tanggal Dibuat</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -44,9 +45,10 @@
 				if ($kl->num_rows() > 0) {
 					foreach ($kl->result() as $kos) {?>
 				<tr>
-					<th class="bg-light"><?php echo $kos->jb_id ?></th>
+					<th><?php echo $kos->jb_id ?></th>
 					<td class="text-capitalize"><?php echo $kos->jb_name ?></td>
-					<td><a href="javascript:void" title="">Actions</a></td>
+					<th><?php echo $kos->jb_reg ?></th>
+					<td><a href="javascript:void(0)" title="" data-toggle="modal" data-target="#edit-<?php echo $kos->jb_id  ?>">Actions</a></td>
 				</tr>
 			<?php }} ?>
 			</tbody>
@@ -82,3 +84,35 @@
     </div>
   </div>
 </div>
+<?php 
+$opl = "SELECT * FROM tbl_jb";
+$kl = $this->db->query($opl);
+if ($kl->num_rows() > 0) {
+	foreach ($kl->result() as $kos) {?>
+<!--Edit Modal -->
+<div class="modal fade" id="edit-<?php echo $kos->jb_id  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <!-- <small class="text-muted">Nomor induk hanya berlaku untuk satu pegawai</small> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	<!-- Form -->
+        	<form action="<?php echo base_url(); ?>admin/update_jabatan" method="POST">
+        		<div class="form-group">
+        			<label for="">Nama Jabatan</label>
+        			<input type="hidden" name="jb_id" value="<?php echo $kos->jb_id ?>">
+        			<input type="text" name="jb_name" required class="form-control" placeholder="Masukan jabatan" value="<?php echo $kos->jb_name ?>">
+        		</div>
+			  <button type="submit" class="btn btn-primary">Update Jabatan</button>
+			</form>
+        	<!-- End Form -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<?php }} ?>
