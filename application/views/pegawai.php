@@ -32,19 +32,20 @@
 				<i class="fa fa-user-circle fa-4x text-primary mr-2"></i>
 				<div class="media-body mb-2">
 					<?php foreach ($pegawai as $val): ?>
-					<h4 class="text-capitalize mb-0 font-weight-bold text-primary"><?php echo $val->pg_nama ?></h4>
+					<h4 class="text-capitalize mb-0 font-weight-bold text-primary" id="kj"><?php echo $val->pg_nama ?></h4>
 					<span class="badge badge-primary"><?php echo $val->pg_reg ?> </span>
 					<?php endforeach ?>
 				</div>
 			</div>
 			<!-- table -->
+			<input type="hidden" value="<?php echo $val->pg_id; ?>" id="jok">
 			<table class="table table-sm mt-4">
 				<tbody>
 					<?php foreach ($pegawai as $ra): 
 						$ids = $ra->pg_id;
 						?>
 					<tr>
-						<td>Nomor Induk</td>
+						<td>Nomor KTP</td>
 						<td>:</td>
 						<th><?php echo $ra->pg_ktp;?></th>
 					</tr>
@@ -78,6 +79,28 @@
 						</th>
 					</tr>
 					<tr>
+						<td>Tanggal Keluar</td>
+						<td>:</td>
+						<th>
+							<?php if ($ra->pg_phk > 0): ?>
+								<?php echo $ra->pg_phk ?>
+							 <?php else: ?>
+							 	<?php echo '-' ?>
+							<?php endif ?>
+						</th>
+					</tr>
+					<tr>
+						<td>Tanggal Update</td>
+						<td>:</td>
+						<th>
+							<?php if ($ra->pg_upd > 0): ?>
+								<?php echo $ra->pg_upd ?>
+							 <?php else: ?>
+							 	<?php echo '-' ?>
+							<?php endif ?>
+						</th>
+					</tr>
+					<tr>
 						<td>Gajih</td>
 						<td>:</td>
 						<th>Rp <?php echo $ra->pg_gaji ?></th>
@@ -88,11 +111,19 @@
 						<th><?php echo $ra->pg_alamat;?></th>
 					</tr>
 					<input type="hidden" id="noi" name="" value="<?php echo $ra->pg_id ?>">
-					<?php endforeach ?>
 				</tbody>
 			</table>
 			<!-- End table -->
 			</div>
+			<!-- Button -->
+			<p class="font-weight-bold mt-3">Action</p>
+			<?php if ($ra->pg_status == 1): ?>
+				<a href="javascript:void(0)" class="btn btn-danger" data-toggle="modal" data-target="#phk"><i class="fa fa-podcast mr-2"></i>NON AKTIF PEGAWAI</a>
+				<?php else: ?>
+					<a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#update"><i class="fa fa-inbox mr-2"></i>UPDATE PEGAWAI</a>
+			<?php endif ?>
+					<?php endforeach ?>
+			<!-- End Button -->
 			</div>
 			<div class="col-md">
 				<div class="p-4 bg-white border-left border-primary">
@@ -106,7 +137,7 @@
 					     <input type="text" class="form-control" name="pg_nama" placeholder="Masukan nama" required value="<?php echo $ke->pg_nama ?>">
 					    </div>
 					    <div class="form-group col-md-6">
-					     <label for="">Nomor Induk</label>
+					     <label for="">Nomor KTP</label>
 					     <input type="text" class="form-control" name="pg_ktp" placeholder="Masukan nomor" required value="<?php echo $ke->pg_ktp ?>">
 					    </div>
 					  </div>
@@ -208,4 +239,39 @@
 		<!-- End Reacord -->
 	</div>
 	<div id="overlay">	</div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="phk" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Dengan ini saya menyatakan bahwa pegawai atas nama <span id="nu" class="font-weight-bold text-capitalize"></span> dinonaktifkan kerja tanggal <span class="font-weight-bold"><?php echo date('d-m-Y'); ?></span>
+        <div class="mt-4">
+        	<form action="<?php echo base_url();?>admin/phk_pegawai" method="POST">
+        	<input type="hidden" name="pg_id" class="bds">
+        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        	<button type="submit" class="btn btn-danger">Ya, Saya Setuju</button>
+        	</form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Update pegawai bekerja kembali tertulis <br> mulai tanggal <span class="font-weight-bold"><?php echo date('d-m-Y'); ?></span>
+        <div class="mt-4">
+        	<form action="<?php echo base_url();?>admin/kembali_pegawai" method="POST">
+        	<input type="hidden" name="pg_id" class="bds">
+        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        	<button type="submit" class="btn btn-success">Ya, Saya Setuju</button>
+        	</form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

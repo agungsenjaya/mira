@@ -7,6 +7,8 @@
   <script src="<?php echo base_url(); ?>assets/js/number_only.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/select2.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery.mask.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/flash.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/flash.jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 </body>
 </html>

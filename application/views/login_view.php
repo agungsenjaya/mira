@@ -8,6 +8,13 @@
 				<p class="mb-0">Selamat datang dihalaman login mira group.</p>
 			</div>
 		</div>
+		<div class="flash-container">
+			<?php if ($this->session->flashdata('us-1')): ?>
+				<div class="flash-message us-1 flash-success">
+					Username dan password salah silahkan periksa kembali, Terima kasih.
+				</div>
+			<?php endif ?>
+		</div>
 		<hr>
 		<form action="<?php echo base_url();?>login/login_act" method="post">
 	  <div class="form-group">

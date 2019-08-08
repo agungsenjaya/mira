@@ -12,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<link rel="stylesheet" href="<?php echo base_url(''); ?>assets/css/theme.css">
 	<link rel="stylesheet" href="<?php echo base_url(''); ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?php echo base_url(''); ?>assets/css/flash.css">
 	<link rel="stylesheet" href="<?php echo base_url(''); ?>assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(''); ?>assets/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(''); ?>assets/css/select2.css">

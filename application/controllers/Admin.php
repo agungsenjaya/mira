@@ -30,6 +30,7 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar');
+		$this->load->view('flash');
 		$this->load->view('dashboard');
 		$this->load->view('layouts/footer');
 	}
@@ -47,6 +48,7 @@ class Admin extends CI_Controller {
 	public function penggajian(){
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar');
+		$this->load->view('flash');
 		$this->load->view('penggajian');
 		$this->load->view('layouts/footer');
 	}
@@ -56,7 +58,8 @@ class Admin extends CI_Controller {
 	  $sql = $this->db->query("SELECT * FROM tbl_log WHERE pg_id='$koda' AND log_reg LIKE '$dats%'");
       $count = $sql->num_rows();
       if ($count > 0) {
-	        echo "Tanggal yang sama sudah di gajih..";
+      	 $this->session->set_flashdata('gj-1', 'This is test message');
+	      redirect('admin/penggajian');
 	      }else{
         $id = $this->input->post('pg_id');
         $gaji = $this->input->post('log_gaji');
@@ -127,6 +130,35 @@ class Admin extends CI_Controller {
 	        'pg_id' => $id
 	      );
 	    $this->m_admin->update_pegawai($where,$data,'tbl_pg');
+	    $this->session->set_flashdata('pg-2', 'This is test message');
+      	redirect('admin');
+	}
+	public function phk_pegawai(){
+		$id = $this->input->post('pg_id');
+		$reg = date('Y-m-d H:i:s');
+		$status = 0;
+		$data = array(
+	      'pg_status' => $status,
+	      'pg_phk' => $reg,
+	    );
+	    $where = array(
+	        'pg_id' => $id
+	      );
+	    $this->m_admin->phk_pegawai($where,$data,'tbl_pg');
+	    redirect('admin');
+	}
+	public function kembali_pegawai(){
+		$id = $this->input->post('pg_id');
+		$status = 1;
+		$reg = date('Y-m-d H:i:s');
+		$data = array(
+	      'pg_status' => $status,
+	      'pg_upd' => $reg,
+	    );
+	    $where = array(
+	        'pg_id' => $id
+	      );
+	    $this->m_admin->kembali_pegawai($where,$data,'tbl_pg');
 	    redirect('admin');
 	}
 	public function tambah_pegawai(){
@@ -134,7 +166,8 @@ class Admin extends CI_Controller {
 	  $sql = $this->db->query("SELECT * FROM tbl_pg WHERE pg_ktp='$koda'");
       $count = $sql->num_rows();
       if ($count > 0) {
-        echo "sudah ada";
+      	$this->session->set_flashdata('pg-1', 'This is test message');
+      	redirect('admin');
       }else{
         $nama = $this->input->post('pg_nama');
         $alamat = $this->input->post('pg_alamat');
@@ -162,6 +195,7 @@ class Admin extends CI_Controller {
 	public function jabatan(){
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar');
+		$this->load->view('flash');
 		$this->load->view('jabatan');
 		$this->load->view('layouts/footer');
 	}
@@ -170,7 +204,8 @@ class Admin extends CI_Controller {
 	  $sql = $this->db->query("SELECT * FROM tbl_jb WHERE jb_name='$koda'");
       $count = $sql->num_rows();
       if ($count > 0) {
-        echo "sudah ada";
+        $this->session->set_flashdata('jb-1', 'This is test message');
+      	redirect('admin/jabatan');
       }else{
       	$nama = $this->input->post('jb_name');
       	$reg = date('Y-m-d H:i:s');
@@ -198,6 +233,7 @@ class Admin extends CI_Controller {
 	public function ketentuan(){
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar');
+		$this->load->view('flash');
 		$this->load->view('ketentuan');
 		$this->load->view('layouts/footer');
 	}
@@ -206,7 +242,8 @@ class Admin extends CI_Controller {
 	  $sql = $this->db->query("SELECT * FROM tbl_kt WHERE kt_nama='$koda'");
       $count = $sql->num_rows();
       if ($count > 0) {
-        echo "sudah ada";
+        $this->session->set_flashdata('kt-1', 'This is test message');
+      	redirect('admin/ketentuan');
       }else{
       	$nama = $this->input->post('kt_nama');
       	$price = $this->input->post('kt_price');

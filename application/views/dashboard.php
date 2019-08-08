@@ -61,9 +61,9 @@
             <tr>
                 <th>#</th>
                 <th>Nama Lengkap</th>
-                <th>Nomor Induk</th>
+                <th>Nomor KTP</th>
                 <th>Jabatan</th>
-                <th>Kelamin</th>
+                <th>Jenis Kelamin</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -124,7 +124,7 @@
      <input type="text" class="form-control" name="pg_nama" placeholder="Masukan nama" required>
     </div>
     <div class="form-group col-md-6">
-     <label for="">Nomor Induk</label>
+     <label for="">Nomor KTP</label>
      <input type="text" class="form-control" name="pg_ktp" placeholder="Masukan nomor" required>
     </div>
   </div>

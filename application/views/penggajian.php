@@ -137,9 +137,9 @@
     	<!-- Form -->
     	<form action="<?php echo base_url(); ?>admin/tambah_penggajian" method="POST">
     		<div class="form-group">
-			<label for=""><span class="text-primary">*</span> Masukan Nik Pegawai</label>
+			<label for=""><span class="text-primary">*</span> Masukan Nomor KTP</label>
 			<select id="drod" class="form-control" required>
-				<option value="">Masukan Nik</option>
+				<option value="">Masukan Nomor KTP</option>
 				<?php 
 				$oml = "SELECT * FROM tbl_pg";
 				$kk = $this->db->query($oml);

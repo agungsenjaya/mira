@@ -74,4 +74,17 @@ $(document).ready(function() {
               });
                   $( '#wu, .uang' ).mask('000.000.000', {reverse: true});
                   $( '#wi, .uang' ).mask('000.000.000', {reverse: true});
+
+                  // PHK
+                  var pl = $('#kj').text();
+                  $('#nu').text(pl);
+                  var psa = $('#jok').val();
+                  $('.bds').val(psa);
+
+                  //Flash
+                  $('.pg-1, .pg-2, .gj-1, .jb-1, .kt-1, .us-1').flashjs({
+                    timeout: 8000
+                  });
+
+
 });

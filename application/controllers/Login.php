@@ -24,6 +24,9 @@ class Login extends CI_Controller {
 	}
 	function index()
 	{
+		if ($this->session->userdata('status') == "login") {
+			redirect(base_url("admin"));
+		}
 		$this->load->view('layouts/header');
 		$this->load->view('login_view');
 		$this->load->view('layouts/footer');
@@ -44,7 +47,8 @@ class Login extends CI_Controller {
 			$this->session->set_userdata($data_session);
 			redirect(base_url('admin'));
 		}else{
-			echo "Username dan password salah..";
+			$this->session->set_flashdata('us-1', 'This is test message');
+			redirect(base_url(""));
 		}
 	}
 	function logout(){
